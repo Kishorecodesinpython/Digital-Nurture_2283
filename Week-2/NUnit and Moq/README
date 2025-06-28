@@ -1,1 +1,136 @@
 
+# 🧪 NUnit Hands-On Unit Testing Project
+
+This project demonstrates **unit testing in C# using NUnit** with Visual Studio. It contains a simple calculator class in a class library and corresponding unit tests in a separate test project.
+
+---
+
+## 📂 Project Structure
+
+```
+
+Solution 'CalcLibrary'
+├── CalcLibrary
+│   └── Calculator.cs
+└── CalculatorTests
+└── CalculatorTests.cs
+
+````
+
+---
+
+## 🛠️ Tools & Frameworks
+
+- Visual Studio (Community Edition or above)
+- NUnit
+- NUnit3TestAdapter
+- Microsoft.NET.Test.Sdk
+- .NET Framework
+
+---
+
+## 📦 NuGet Packages Used
+
+Install the following **in the `CalculatorTests` project** using **Manage NuGet Packages**:
+
+- `NUnit`
+- `NUnit3TestAdapter`
+- `Microsoft.NET.Test.Sdk`
+
+---
+
+## 📌 Calculator.cs
+
+```csharp
+namespace CalcLibrary
+{
+    public class Calculator
+    {
+        public int Add(int a, int b)
+        {
+            return a + b;
+        }
+    }
+}
+````
+
+---
+
+## ✅ CalculatorTests.cs
+
+```csharp
+using NUnit.Framework;
+using CalcLibrary;
+
+namespace CalculatorTests
+{
+    [TestFixture]
+    public class CalculatorTests
+    {
+        private Calculator calculator;
+
+        [SetUp]
+        public void Init()
+        {
+            calculator = new Calculator();
+        }
+
+        [TearDown]
+        public void Cleanup()
+        {
+            calculator = null;
+        }
+
+        [Test]
+        public void SimpleAddTest()
+        {
+            int result = calculator.Add(2, 3);
+            Assert.That(result, Is.EqualTo(5));
+        }
+
+        [TestCase(10, 20, 30)]
+        [TestCase(0, 0, 0)]
+        [TestCase(-5, -3, -8)]
+        public void ParameterizedAddTest(int a, int b, int expected)
+        {
+            int result = calculator.Add(a, b);
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test, Ignore("Skipping this test for now.")]
+        public void IgnoredTestExample()
+        {
+            Assert.Fail("This test is ignored.");
+        }
+    }
+}
+```
+
+---
+
+## 🚀 How to Run the Project
+
+1. Clone or download this repository.
+2. Open the solution in Visual Studio.
+3. Right-click `CalculatorTests` → Set as Startup Project.
+4. Install required NuGet packages (see above).
+5. Build the solution (`Ctrl + Shift + B`).
+6. Open **Test Explorer** → Click **Run All**.
+
+---
+
+## 📈 Expected Output
+
+You should see all test cases pass (✅) in **Test Explorer** if everything is correctly configured.
+
+---
+
+## 🧠 Key NUnit Features Used
+
+* `[TestFixture]` - Marks the test class
+* `[SetUp]` / `[TearDown]` - Setup and cleanup before/after each test
+* `[Test]` - Basic test method
+* `[TestCase]` - Parameterized tests
+* `[Ignore]` - Skipped test demo
+
+
