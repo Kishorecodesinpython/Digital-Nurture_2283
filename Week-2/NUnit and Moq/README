@@ -133,4 +133,139 @@ You should see all test cases pass (✅) in **Test Explorer** if everything is c
 * `[TestCase]` - Parameterized tests
 * `[Ignore]` - Skipped test demo
 
+````markdown
+# 📧 CustomerComm Solution - Unit Testing with NUnit and Moq
+
+This repository demonstrates how to write testable code using **Dependency Injection (DI)** and how to **mock external dependencies** like email services using **Moq** with **NUnit** as the unit testing framework.
+
+---
+
+## 📁 Project Structure
+
+| Project               | Description |
+|-----------------------|-------------|
+| **CustomerCommLib**   | Class Library containing the business logic, including the `IMailSender` interface and `CustomerComm` class. |
+| **CustomerComm.Tests**| Unit Test project using Moq and NUnit to test `CustomerComm` logic without sending real emails. |
+| **CustomerCommApp**   | Console application to run the actual logic with real email sending (not used during tests). |
+
+---
+
+## ✅ Objective
+
+- Understand how mocking enhances Test-Driven Development (TDD).
+- Learn Dependency Injection (DI) and Constructor Injection for testability.
+- Perform unit testing without hitting real external services like SMTP.
+
+---
+
+## 🛠️ How to Use
+
+### 🔧 Prerequisites
+- Visual Studio 2019/2022
+- .NET Framework or .NET Core SDK
+- NuGet Packages:
+  - `NUnit`
+  - `NUnit3TestAdapter`
+  - `Moq`
+
+---
+
+### 📦 NuGet Setup
+
+For the **CustomerComm.Tests** project, install:
+```bash
+NUnit
+NUnit3TestAdapter
+Moq
+````
+
+Using Visual Studio:
+
+* Right-click `CustomerComm.Tests` > Manage NuGet Packages > Browse & Install
+
+---
+
+### 🚀 How to Run
+
+1. Clone or download this repo.
+2. Open the solution in Visual Studio (`CustomerCommSolution.sln`).
+3. Restore NuGet packages:
+
+   * Right-click the solution > **Restore NuGet Packages**
+4. Open **Test Explorer**:
+
+   * Go to **Test > Test Explorer**
+5. Click **Run All** to execute unit tests.
+6. You should see ✅ tests pass.
+
+---
+
+## 🧪 Unit Test Scenario
+
+We mock the `IMailSender` interface to avoid sending real emails:
+
+```csharp
+_mockMailSender.Setup(x => x.SendMail(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+```
+
+This makes `CustomerComm.SendMailToCustomer()` testable without relying on actual SMTP communication.
+
+---
+
+## 📄 Sample Code
+
+### Interface & Implementation
+
+```csharp
+public interface IMailSender {
+    bool SendMail(string toAddress, string message);
+}
+
+public class MailSender : IMailSender {
+    public bool SendMail(string toAddress, string message) {
+        // Actual email sending via SMTP
+    }
+}
+```
+
+### Testable Class
+
+```csharp
+public class CustomerComm {
+    private IMailSender _mailSender;
+    public CustomerComm(IMailSender mailSender) {
+        _mailSender = mailSender;
+    }
+    public bool SendMailToCustomer() {
+        _mailSender.SendMail("cust123@abc.com", "Some Message");
+        return true;
+    }
+}
+```
+
+---
+
+## ✅ Test Code Sample
+
+```csharp
+[Test]
+public void SendMailToCustomer_ShouldReturnTrue() {
+    _mockMailSender.Setup(x => x.SendMail(It.IsAny<string>(), It.IsAny<string>())).Returns(true);
+    var result = _customerComm.SendMailToCustomer();
+    Assert.IsTrue(result);
+}
+```
+
+---
+
+## 💡 Key Concepts Used
+
+* **Dependency Injection**
+* **Constructor Injection**
+* **Mocking with Moq**
+* **Unit Testing with NUnit**
+* **Avoiding real external service calls during tests**
+
+
+
 
