@@ -1,1 +1,64 @@
+ 📘 EF Core 8.0 Labs (1–7)
+
+A hands-on EF Core 8.0 console application demonstrating basic ORM concepts, database modeling, migrations, and CRUD operations using C# and SQL Server.
+
+---
+
+## 🧪 Lab 1: Setup & EF Core Basics
+
+* Created .NET console app
+* Installed EF Core packages for SQL Server
+
+```bash
+dotnet new console -n RetailInventory
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
+
+---
+
+## 🧪 Lab 2: Define Models & DbContext
+
+* Created `Product` and `Category` models
+* Added `AppDbContext` with connection string
+
+---
+
+## 🧪 Lab 3: Create & Apply Migrations
+
+* Installed EF CLI
+* Added migration and created database
+
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+---
+
+## 🧪 Lab 4: Insert Initial Data
+
+* Inserted sample categories and products
+* Used `AddRangeAsync()` and `SaveChangesAsync()`
+
+---
+
+## 🧪 Lab 5: Read Data
+
+* Retrieved data using `ToListAsync()`, `FindAsync()`, and `FirstOrDefaultAsync()`
+* Displayed product info in console
+
+---
+
+## 🧪 Lab 6: Update & Delete
+
+* Updated product price
+* Deleted product by name
+
+---
+
+## 🧪 Lab 7: LINQ Queries
+
+* Filtered and sorted products
+* Used LINQ `Where()`, `OrderBy()`, `Select()` for custom output
 
