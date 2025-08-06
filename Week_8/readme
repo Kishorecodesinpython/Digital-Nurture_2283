@@ -1,1 +1,77 @@
+# Git Hands-On Lab - Conflict Resolution, Cleanup, and Branch Operations
 
+This repository demonstrates step-by-step Git operations as part of a hands-on lab series. These tasks simulate real-world version control activities such as branch creation, file modification, merge conflict resolution, cleanup, and pushing changes to a remote repository.
+
+## 🧪 Hands-on Lab Overview
+
+### ✅ Git-T03-HOL_001: Conflict Resolution During Merge
+
+- Create a branch `GitWork` from `master`.
+- Add a file `hello.xml` with unique content in `GitWork`.
+- Commit the changes.
+- Add a different version of `hello.xml` in `master` and commit.
+- Attempt to merge `GitWork` into `master`, observe conflict.
+- Resolve the conflict manually or using a 3-way merge tool like `P4Merge`.
+- Commit the resolved file.
+- Add backup files to `.gitignore`.
+- Delete the merged branch and clean up.
+
+### ✅ Git-T03-HOL_002: Cleanup and Push to Remote
+
+- Check if the master is clean.
+- List all branches.
+- Pull changes from the remote.
+- Push local commits to the remote repository.
+- Verify changes on GitHub/GitLab.
+
+### ✅ Git-T03-HOL_003: Revert and Amend
+
+- Demonstrate `git revert` to undo a commit without rewriting history.
+- Use `git commit --amend` to modify the latest commit.
+- Push changes with force (`git push --force`) when needed.
+
+### ✅ Git-T03-HOL_004: Rebase Operations
+
+- Create a new feature branch and commit changes.
+- Switch back to `master` and make another commit.
+- Rebase feature branch on top of updated master.
+- Resolve any conflicts during rebase.
+- Verify the linear commit history using `git log --oneline --graph`.
+
+### ✅ Git-T03-HOL_005: Cherry-Pick Commit
+
+- Create a new branch for cherry-pick.
+- Identify and cherry-pick specific commits from another branch using `git cherry-pick <commit_hash>`.
+- Handle conflicts if any.
+- Push the cherry-picked changes to remote.
+
+---
+
+## 🔧 Tools & Commands Used
+
+- Git Bash / Terminal
+- `git status`, `git branch`, `git checkout`, `git merge`, `git rebase`, `git cherry-pick`, `git log`, `git diff`
+- Conflict resolution with manual edit or `P4Merge`
+- `.gitignore` usage
+- `git push`, `git pull`, `git revert`, `git commit --amend`
+
+---
+
+## 💡 Additional Notes
+
+- Always ensure your working tree is clean (`git status`) before switching branches.
+- Avoid committing `.bak`, `.orig`, or temp files – configure `.gitignore` properly.
+- Use `--force-with-lease` instead of `--force` when pushing amended commits for safer updates.
+- Follow best practices for writing commit messages and maintaining clean Git history.
+
+---
+
+## 📁 Repository Structure
+
+```
+
+/GitDemo
+├── hello.xml
+├── welcome.txt
+├── .gitignore
+└── README.md
